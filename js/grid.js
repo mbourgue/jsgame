@@ -37,25 +37,23 @@ function Tracks() {
   this.tracks = [];
 
 
-  this.add = function (lines) { // Add one track
-    this.tracks.push(new Track());
+  this.add = function (key) { // Add one track
+    this.tracks.push(new Track(key));
   }
   this.delete = function (lines) { // Delete one track
 
   }
-
-  this.update = function () {
+  this.update = function () { // Update all the tracks
     for(track in tracks) {
       track.update();
     }
   }
+  this.render = function() {  // Render all the tracks
 
-  this.render = function() {
+    // console.log(this.tracks);
 
-    console.log(this.tracks);
-
-    for(track in this.tracks) {
-      track.render();
+    for (var i = 0; i < this.tracks.length; i++) {
+         this.tracks[i].render();
     }
 
   }
@@ -67,7 +65,7 @@ function Tracks() {
 // KEY ID: QSDFGHJKLM
 
 // Track
-function Track() {
+function Track(key) {
 
   var keyboard_id;
   var Key;
