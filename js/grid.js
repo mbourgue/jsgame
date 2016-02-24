@@ -1,20 +1,35 @@
 function Grid() {
 
-  var lines;
+  var tracks;
+
+  this.update = function () {
+
+  }
 
 }
-Grid.prototype.addLines = function (lines) {
 
-};
-Grid.prototype.removeLines = function (lines) {
 
-};
+
+
+function Tracks() {
+
+
+  this.add = function (lines) {
+
+  }
+  this.delete = function (lines) {
+
+  }
+  // this. = function () {
+  //
+  // }
+}
 
 
 
 // KEY ID: QSDFGHJKLM
 
-function Line() {
+function Track() {
 
   var key_id;
 
