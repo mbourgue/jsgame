@@ -9,20 +9,23 @@ var key_value =
     'J',
     'K',
     'L',
-    'M',
+    'M'
 ];
 
 
 // Grid
 function Grid() {
 
-  var tracks;
+  this.tracks = new Tracks();
 
   this.update = function () { // Update all tracks
-    tracks.update();
+    this.tracks.update();
   }
   this.pause = function() {
 
+  }
+  this.render = function() {
+    this.tracks.render();
   }
 
 }
@@ -31,11 +34,11 @@ function Grid() {
 // Track Mgr
 function Tracks() {
 
-  var tracks = [];
+  this.tracks = [];
 
 
   this.add = function (lines) { // Add one track
-
+    this.tracks.push(new Track());
   }
   this.delete = function (lines) { // Delete one track
 
@@ -46,9 +49,17 @@ function Tracks() {
       track.update();
     }
   }
-  // this. = function () {
-  //
-  // }
+
+  this.render = function() {
+
+    console.log(this.tracks);
+
+    for(track in this.tracks) {
+      track.render();
+    }
+
+  }
+
 }
 
 
@@ -61,18 +72,25 @@ function Track() {
   var keyboard_id;
   var Key;
 
-  var notes = []; // tableau de notes
+  this.notes = []; // tableau de notes
 
 
-  var line = new Phaser.Rectangle(50, 0, 5, 500);
-  var color = "#FFF";
+  this.line = new Phaser.Rectangle(50, 0, 5, 500);
+  this.color = "#FFF";
 
 
   this.update = function() {
 
-    for(note in notes) {
+    for(note in this.notes) {
       note.update();
     }
+
+  }
+
+  this.render = function() {
+
+    game.debug.geom(this.line, this.color);
+
 
   }
 }
