@@ -4,8 +4,8 @@ var game = new Phaser.Game(window.pageX, window.pageY, Phaser.AUTO, 'phaser-exam
 
 function preload() {
 
-    game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
-    game.load.image('background','assets/misc/starfield.jpg');
+  /*  game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
+    game.load.image('background','assets/misc/starfield.jpg');*/
 
 }
 
@@ -14,7 +14,7 @@ var background;
 
 function create() {
 
-    game.stage.backgroundColor = '#182d3b';
+    /*game.stage.backgroundColor = '#182d3b';
 
     background = game.add.tileSprite(0, 0, 800, 600, 'background');
 
@@ -22,7 +22,7 @@ function create() {
 
     button.onInputOver.add(over, this);
     button.onInputOut.add(out, this);
-    button.onInputUp.add(up, this);
+    button.onInputUp.add(up, this);*/
 
 }
 
