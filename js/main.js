@@ -1,6 +1,9 @@
-
-
-var game = new Phaser.Game(window.pageX, window.pageY, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update, render: render  });
+var game = new Phaser.Game(window.pageX, window.pageY, Phaser.AUTO, 'phaser-example', {
+  preload: preload,
+  create: create,
+  update: update,
+  render: render
+});
 
 
 
@@ -10,8 +13,8 @@ var grid = new Grid();
 
 function preload() {
 
-    // game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
-    // game.load.image('background','assets/misc/starfield.jpg');
+  // game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
+  // game.load.image('background','assets/misc/starfield.jpg');
 
 }
 
@@ -19,14 +22,13 @@ var button;
 var background;
 
 
-
 function create() {
 
-    game.stage.backgroundColor = '#222';
+  game.stage.backgroundColor = '#222';
 
-    // background = game.add.tileSprite(0, 0, 800, 600, 'background');
+  // background = game.add.tileSprite(0, 0, 800, 600, 'background');
 
-    //button = game.add.button(game.world.centerX - 95, 400, 'button', actionOnClick, this, 2, 1, 0);
+  //button = game.add.button(game.world.centerX - 95, 400, 'button', actionOnClick, this, 2, 1, 0);
 
   /*  button.onInputOver.add(over, this);
     button.onInputOut.add(out, this);
@@ -34,10 +36,12 @@ function create() {
 
   //  line = new Phaser.Rectangle(50, 0, 5, 500);
 
-//
+  //
 
-  grid.tracks.add();
-
+  grid.tracks.add('Q');
+  grid.tracks.add('F');
+  grid.tracks.add('L');
+  grid.tracks.add('S');
 
 }
 
@@ -46,35 +50,35 @@ function create() {
 
 function update() {
 
-    /*line.centerOn(game.input.activePointer.x, game.input.activePointer.y);
-    line.rotate(0.05);*/
+  /*line.centerOn(game.input.activePointer.x, game.input.activePointer.y);
+  line.rotate(0.05);*/
 
 }
 
 function render() {
 
-    grid.render();
+  grid.render();
 
-    /*game.debug.lineInfo(line, 32, 32);*/
+  /*game.debug.lineInfo(line, 32, 32);*/
 
 }
 
 
 
 function up() {
-    console.log('button up', arguments);
+  console.log('button up', arguments);
 }
 
 function over() {
-    console.log('button over');
+  console.log('button over');
 }
 
 function out() {
-    console.log('button out');
+  console.log('button out');
 }
 
-function actionOnClick () {
+function actionOnClick() {
 
-    background.visible =! background.visible;
+  background.visible = !background.visible;
 
 }

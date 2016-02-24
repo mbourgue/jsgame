@@ -1,16 +1,42 @@
-var key_value =
-[
-    'Q',
-    'S',
-    'D',
-    'F',
-    'G',
-    'H',
-    'J',
-    'K',
-    'L',
-    'M'
-];
+var key_values = {
+  'Q': {
+    'id': 1,
+    'color': '#ffffff'
+  },
+  'S': {
+    'id': 2,
+    'color': '#c73535'
+  },
+  'D': {
+    'id': 3,
+    'color': '#afd129'
+  },
+  'F': {
+    'id': 4,
+    'color': '#10883c'
+  },
+  'G': {
+    'id': 5,
+    'color': '#21acac'
+  },
+  'H': {
+    'id': 6,
+    'color': '#aa40d5'
+  },
+  'J': {
+    'id': 7,
+    'color': '#d14394'
+  },
+  'K': {
+    'id': 8,
+    'color': '#ffc700'
+  },
+  'L': {
+    'id': 9,
+    'color': '#ff0000'
+  }
+};
+var padding = 50;
 
 
 // Grid
@@ -18,7 +44,7 @@ function Grid() {
 
   this.tracks = new Tracks();
 
-  this.update = function () { // Update all tracks
+  this.update = function() { // Update all tracks
     this.tracks.update();
   }
   this.pause = function() {
@@ -37,23 +63,23 @@ function Tracks() {
   this.tracks = [];
 
 
-  this.add = function (key) { // Add one track
+  this.add = function(key) { // Add one track
     this.tracks.push(new Track(key));
   }
-  this.delete = function (lines) { // Delete one track
+  this.delete = function(lines) { // Delete one track
 
   }
-  this.update = function () { // Update all the tracks
-    for(track in tracks) {
+  this.update = function() { // Update all the tracks
+    for (track in tracks) {
       track.update();
     }
   }
-  this.render = function() {  // Render all the tracks
+  this.render = function() { // Render all the tracks
 
     // console.log(this.tracks);
 
     for (var i = 0; i < this.tracks.length; i++) {
-         this.tracks[i].render();
+      this.tracks[i].render();
     }
 
   }
@@ -73,13 +99,24 @@ function Track(key) {
   this.notes = []; // tableau de notes
 
 
-  this.line = new Phaser.Rectangle(50, 0, 5, 500);
-  this.color = "#FFF";
+  this.x;
+  this.color;
 
+  this.color = key_values[key].color;
+  this.x = key_values[key].id * padding;
+
+  this.line = new Phaser.Rectangle(this.x, 0, 5, 500);
+
+  this.gen = function(key) {
+
+    this.color = key_values[key].color;
+    this.x = key_values[key].id * padding;
+
+  }
 
   this.update = function() {
 
-    for(note in this.notes) {
+    for (note in this.notes) {
       note.update();
     }
 
