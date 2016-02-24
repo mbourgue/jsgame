@@ -42,6 +42,7 @@ function create() {
   grid.tracks.add('F');
   grid.tracks.add('L');
   grid.tracks.add('S');
+  grid.tracks.add('M');
 
 }
 
@@ -53,6 +54,7 @@ function update() {
   /*line.centerOn(game.input.activePointer.x, game.input.activePointer.y);
   line.rotate(0.05);*/
 
+  grid.update();
 }
 
 function render() {
