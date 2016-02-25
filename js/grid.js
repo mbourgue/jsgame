@@ -1,6 +1,6 @@
 var key_values = {
-    'Q': { 'id': 1, 'color': '#ffffff', 'active_color': '#e3e3e3', 'key': Phaser.Keyboard.Q },
-    'S': { 'id': 2, 'color': '#c73535', 'active_color': '#a22929', 'key': Phaser.Keyboard.S },
+    'Q': { 'id': 1, 'color': '#ffffff', 'active_color': '#ffffff', 'key': Phaser.Keyboard.Q },
+    'S': { 'id': 2, 'color': '#c73535', 'active_color': '#ffffff', 'key': Phaser.Keyboard.S },
     'D': { 'id': 3, 'color': '#afd129', 'active_color': '#ffffff', 'key': Phaser.Keyboard.D },
     'F': { 'id': 4, 'color': '#10883c', 'active_color': '#ffffff', 'key': Phaser.Keyboard.F },
     'G': { 'id': 5, 'color': '#21acac', 'active_color': '#ffffff', 'key': Phaser.Keyboard.G },
@@ -176,12 +176,12 @@ function TrackKey(track, value) {
         track.color = key_values[value].active_color;
         this.circle.diameter = 60;
         // console.log(track.color);
-        
+
         if(Phaser.Circle.intersects(this.circle,track.notes.notes[0].circle)) {
           player.score += 50;   console.log(player.score);
 
         }else{
-          player.score -= 50;
+          // player.score -= 50;
         }
 
 

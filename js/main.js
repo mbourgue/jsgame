@@ -5,17 +5,50 @@ var game = new Phaser.Game(window.pageX, window.pageY, Phaser.AUTO, 'phaser-exam
   render: render
 });
 
+/*
+
+function GuiScore() {
+
+}
+*/
+
+
+//  The Google WebFont Loader will look for this object, so create it before loading the script.
+WebFontConfig = {
+
+  //  'active' means all requested fonts have finished loading
+  //  We set a 1 second delay before calling 'createText'.
+  //  For some reason if we don't the browser cannot render the text the first time it's created.
+  // active: function() { game.time.events.add(Phaser.Timer.SECOND, createText, this); },
+
+  //  The Google Fonts we want to load (specify as many as you like in the array)
+  google: {
+    families: ['Quicksand']
+  }
+
+};
 
 
 var grid = new Grid();
 
+var gui = new Gui();
 
+
+
+
+
+// var guiScore = new GuiScore();
 
 function preload() {
 
   // game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
   // game.load.image('background','assets/misc/starfield.jpg');
+  game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
+
+
+  gui.createScore();
+//
 }
 
 var button;
@@ -26,7 +59,7 @@ var player = new Player();
 
 function create() {
 
-  game.stage.backgroundColor = '#222';
+  game.stage.backgroundColor = '#111';
 
   // background = game.add.tileSprite(0, 0, 800, 600, 'background');
 
@@ -41,10 +74,16 @@ function create() {
   //
 
   grid.tracks.add('Q');
-  grid.tracks.add('F');
-  grid.tracks.add('L');
   grid.tracks.add('S');
-  grid.tracks.add('M');
+  grid.tracks.add('D');
+  grid.tracks.add('F');
+  grid.tracks.add('G');
+  grid.tracks.add('H');
+  // grid.tracks.add('J');
+  // grid.tracks.add('K');
+  // grid.tracks.add('L');
+  // grid.tracks.add('M');
+
 
 }
 
@@ -57,6 +96,7 @@ function update() {
   line.rotate(0.05);*/
 
   grid.update();
+  gui.update();
 }
 
 function render() {
