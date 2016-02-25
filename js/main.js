@@ -30,9 +30,7 @@ WebFontConfig = {
 
 
 var grid = new Grid();
-
 var gui = new Gui();
-
 
 
 
@@ -73,12 +71,14 @@ function create() {
 
   //
 
-  grid.tracks.add('Q');
-  grid.tracks.add('S');
-  grid.tracks.add('D');
-  grid.tracks.add('F');
-  grid.tracks.add('G');
-  grid.tracks.add('H');
+  grid.level.load(0);
+
+  grid.tracks.add('W');
+  grid.tracks.add('X');
+  grid.tracks.add('C');
+  grid.tracks.add('V');
+  grid.tracks.add('B');
+  grid.tracks.add('N');
   // grid.tracks.add('J');
   // grid.tracks.add('K');
   // grid.tracks.add('L');

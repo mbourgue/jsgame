@@ -1,10 +1,10 @@
 var key_values = {
-    'Q': { 'id': 1, 'color': '#ffffff', 'active_color': '#ffffff', 'key': Phaser.Keyboard.Q },
-    'S': { 'id': 2, 'color': '#c73535', 'active_color': '#ffffff', 'key': Phaser.Keyboard.S },
-    'D': { 'id': 3, 'color': '#afd129', 'active_color': '#ffffff', 'key': Phaser.Keyboard.D },
-    'F': { 'id': 4, 'color': '#10883c', 'active_color': '#ffffff', 'key': Phaser.Keyboard.F },
-    'G': { 'id': 5, 'color': '#21acac', 'active_color': '#ffffff', 'key': Phaser.Keyboard.G },
-    'H': { 'id': 6, 'color': '#aa40d5', 'active_color': '#ffffff', 'key': Phaser.Keyboard.H },
+    'W': { 'id': 1, 'color': '#ff9100', 'active_color': '#ffffff', 'key': Phaser.Keyboard.W },
+    'X': { 'id': 2, 'color': '#c73535', 'active_color': '#ffffff', 'key': Phaser.Keyboard.X },
+    'C': { 'id': 3, 'color': '#afd129', 'active_color': '#ffffff', 'key': Phaser.Keyboard.C },
+    'V': { 'id': 4, 'color': '#10883c', 'active_color': '#ffffff', 'key': Phaser.Keyboard.V },
+    'B': { 'id': 5, 'color': '#21acac', 'active_color': '#ffffff', 'key': Phaser.Keyboard.B },
+    'N': { 'id': 6, 'color': '#aa40d5', 'active_color': '#ffffff', 'key': Phaser.Keyboard.N },
     'J': { 'id': 7, 'color': '#d14394', 'active_color': '#ffffff', 'key': Phaser.Keyboard.J },
     'K': { 'id': 8, 'color': '#ffc700', 'active_color': '#ffffff', 'key': Phaser.Keyboard.K },
     'L': { 'id': 9, 'color': '#ff0000', 'active_color': '#ffffff', 'key': Phaser.Keyboard.L },
@@ -36,13 +36,16 @@ function Player() {
 // Grid
 function Grid() {
 
-  this.tracks = new Tracks();
+  this.level = new Level(this);
+  this.tracks = new Tracks;
 
   this.inPause = false;
 
 
 
   this.update = function () { // Update all tracks
+    this.level.update();
+
     if(!this.inPause) {
       this.tracks.update();
     }
@@ -70,6 +73,9 @@ function Tracks() {
     else
       this.tracks.push(track);
   }
+  this.addLine = function(array) {
+
+  }
   this.delete = function (lines) { // Delete one track
     //this.tracks.splice(,1);
   }
@@ -80,7 +86,7 @@ function Tracks() {
   }
   this.render = function() {  // Render all the tracks
     for (var i = 0; i < this.tracks.length; i++) {
-         this.tracks[i].render();
+      this.tracks[i].render();
     }
   }
 
