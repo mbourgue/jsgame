@@ -21,6 +21,8 @@ function preload() {
 var button;
 var background;
 
+var player = new Player();
+
 
 function create() {
 
