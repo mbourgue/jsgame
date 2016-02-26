@@ -1,6 +1,6 @@
 var key_values = {
-    'W': { 'id': 1, 'color': '#ff9100', 'active_color': '#ffffff', 'key': Phaser.Keyboard.W },
-    'X': { 'id': 2, 'color': '#c73535', 'active_color': '#ffffff', 'key': Phaser.Keyboard.X },
+    'W': { 'id': 1, 'color': '#c73535', 'active_color': '#ffffff', 'key': Phaser.Keyboard.W },
+    'X': { 'id': 2, 'color': '#ed9117', 'active_color': '#ffffff', 'key': Phaser.Keyboard.X },
     'C': { 'id': 3, 'color': '#afd129', 'active_color': '#ffffff', 'key': Phaser.Keyboard.C },
     'V': { 'id': 4, 'color': '#10883c', 'active_color': '#ffffff', 'key': Phaser.Keyboard.V },
     'B': { 'id': 5, 'color': '#21acac', 'active_color': '#ffffff', 'key': Phaser.Keyboard.B },
@@ -64,7 +64,6 @@ function Tracks() {
 
   this.tracks = [];
 
-
   this.add = function (key) { // Add one track
 
     var track = new Track(key);
@@ -73,12 +72,22 @@ function Tracks() {
     else
       this.tracks.push(track);
   }
-  this.addLine = function(array) {
+  this.addLine = function(array) { // Add entire line
 
+    if(array.length != 6) {
+      console.debug('invalid length of notes array'); return;
+    }
+
+
+console.log(array[i]);
+    for (var i = 0; i < this.tracks.length; i++) {
+
+      if(array[i] == 1) {
+          this.tracks[i].add();
+      }
+    }
   }
-  this.delete = function (lines) { // Delete one track
-    //this.tracks.splice(,1);
-  }
+
   this.update = function () { // Update all the tracks
     for (var i = 0; i < this.tracks.length; i++) {
       this.tracks[i].update();
@@ -109,7 +118,11 @@ function Track(key) {
   this.key = new TrackKey(this,key);
 
 
-  this.notes.add();
+//  this.notes.add();
+
+  this.add = function() {
+    this.notes.add();
+  }
 
   this.update = function() {
     this.notes.update();
@@ -152,18 +165,18 @@ function Notes(track) {
 // Note
 function Note(track) {
 
-  this.circle = new Phaser.Circle(track.x + track.line.width/2 , 10, 30);
+  this.circle = new Phaser.Circle(track.x + track.line.width/2 , -track.line.height/2, 30);
   game.physics.enable(this.circle, Phaser.Physics.ARCADE);
 
   this.update = function() {
-    this.circle.y += 2;
+    this.circle.y += 4;
   }
   this.render = function() {
     game.debug.geom(this.circle, track.color); // Render Key
   }
 }
 
-// Key
+// TrackKey is the graphical representation of your keyboard button (the circles at the bottom)
 function TrackKey(track, value) {
 
 
@@ -178,23 +191,42 @@ function TrackKey(track, value) {
 
   this.update = function() {
 
+    // TODO: bouger ce if ailleurs
+    if(track.notes.notes.length > 0 && track.notes.notes[0].circle.y > game.height) {
+      track.notes.notes.splice(0,1);
+    }
+
+    //console.log(game.height);
+
     if (game.input.keyboard.isDown(key_values[value].key)) {
+
+        // console.debug('push button ' + value + ', track n°' + key_values[value].id);
+
         track.color = key_values[value].active_color;
         this.circle.diameter = 60;
         // console.log(track.color);
 
-        if(Phaser.Circle.intersects(this.circle,track.notes.notes[0].circle)) {
-          player.score += 50;   console.log(player.score);
+        if(track.notes.notes.length > 0) {
+          if(Phaser.Circle.intersects(this.circle,track.notes.notes[0].circle)) {
+            player.score += 50;
+            // console.log(player.score);
+            track.notes.notes.splice(0,1);
+          }else{
+            if(player.score - 50 >= 0) {
+              player.score -= 100;
+            }
 
-        }else{
-          // player.score -= 50;
+          }
         }
+
 
 
     }else{
         track.color = key_values[value].color;
         this.circle.diameter = 50;
     }
+
+
   }
 
   this.render = function() {

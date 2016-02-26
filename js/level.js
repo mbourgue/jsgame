@@ -1,60 +1,63 @@
-function loadJSON(callback) {
+function loadJSON() {
 
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType("application/json");
-  xobj.open('GET', 'js/0.json', true); // Replace 'my_data' with the path to your file
+  xobj.open('GET', 'js/levels/0.json', false);
   xobj.onreadystatechange = function() {
     if (xobj.readyState == 4 && xobj.status == "200") {
       // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-      callback(xobj.responseText);
+    //  callback(xobj.responseText);
+
+  //  console.debug(JSON.parse(xobj.responseText));
+
     }
   };
   xobj.send(null);
+
+  return JSON.parse(xobj.responseText);
 }
-
-
-
 
 
 function Level(grid) {
 
-  this.bpm;
-  this.name;
-  this.author;
-  this.map;
+  this.datas = {};
+
+  this.self = this;
 
   this.time_cursor = 0;
-  this.timer_tempo = new Phaser.Timer(game, false);
-  //this.timer_tempo.add(995, this.step(), this)
+  /*this.timer_tempo = new Phaser.Timer(game, false);
+  this.timer_tempo.loop(995, this.step, this);
+  this.timer_tempo.start(1000);*/
 
-  this.load = function(level_id) {
+  this.load = function(level_id) { // Load the level
 
-    this.map = loadJSON(function(response) {
-
-    // Parse JSON string into object
-      var level = JSON.parse(response);
-      console.log(level);
+    this.datas = loadJSON();
 
 
-      this.bpm = level.bpm;
-      this.name = level.name;;
-      this.author  = level.author;
-      this.map  = level.map;
-
-      console.log(this.map);
-   });
-
+    self.datas = this.datas;
+   console.debug(self.datas);
   }
 
 
   this.step = function() {
-    for (var y = 0; y < 6; y++) {
-      grid.tracks.createLine(this.map[y][this.time_cursor]);
+    if(this.time_cursor < this.datas.map[0].length) {
+
+      var line = [];
+      for (var y = 0; y < 6; y++) {
+        line.push(this.datas.map[y][this.time_cursor]);
+      }
+      grid.tracks.addLine(line);
+
+      this.time_cursor++;
     }
 
-    this.time_cursor++;
+
+    // console.debug(this.datas + 'step!');
   }
   this.update = function() {
+  //  this.timer_tempo
+
+
 
   }
 

@@ -13,8 +13,8 @@ function Gui() {
     this.text.inputEnabled = true;
     this.text.input.enableDrag();
 
-    this.text.events.onInputOver.add(over, this);
-    this.text.events.onInputOut.add(out, this);
+  /*  this.text.events.onInputOver.add(over, this);
+    this.text.events.onInputOut.add(out, this);*/
   }
 
   this.update = function() {
