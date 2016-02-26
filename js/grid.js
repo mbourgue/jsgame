@@ -43,6 +43,20 @@ function Grid() {
 
 
 
+  this.init = function() {
+
+    this.level.load(0); // Load & Interpret JSON File
+
+    this.tracks.add('W');
+    this.tracks.add('X');
+    this.tracks.add('C');
+    this.tracks.add('V');
+    this.tracks.add('B');
+    this.tracks.add('N');
+
+  }
+
+
   this.update = function () { // Update all tracks
     this.level.update();
 

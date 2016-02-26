@@ -35,19 +35,6 @@ function create() {
   game.stage.backgroundColor = '#111';
 
 
-  grid.level.load(0);
-
-  grid.tracks.add('W');
-  grid.tracks.add('X');
-  grid.tracks.add('C');
-  grid.tracks.add('V');
-  grid.tracks.add('B');
-  grid.tracks.add('N');
-  // grid.tracks.add('J');
-  // grid.tracks.add('K');
-  // grid.tracks.add('L');
-  // grid.tracks.add('M');
-
   // timer provisoire
   game.time.events.loop(500, grid.level.step, grid.level);
 
