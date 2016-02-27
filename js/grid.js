@@ -37,7 +37,7 @@ function Player() {
 function Grid() {
 
   this.level = new Level(this);
-  this.tracks = new Tracks;
+  this.tracks = new Tracks();
 
   this.inPause = false;
 
@@ -165,8 +165,6 @@ function Note(track) {
 
 // Key
 function TrackKey(track, value) {
-
-
   this.circle = new Phaser.Circle(track.x + track.line.width/2 , 500, 50);
   this.text = new Phaser.Text(game, track.x, 500, value);
   game.add.text(this.text);
@@ -184,10 +182,11 @@ function TrackKey(track, value) {
         // console.log(track.color);
 
         if(Phaser.Circle.intersects(this.circle,track.notes.notes[0].circle)) {
-          player.score += 50;   console.log(player.score);
-
+          player.score += 50;
+          skillbar.input.success();
         }else{
           // player.score -= 50;
+          skillbar.input.fail();
         }
 
 

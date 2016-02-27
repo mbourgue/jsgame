@@ -31,7 +31,7 @@ WebFontConfig = {
 
 var grid = new Grid();
 var gui = new Gui();
-
+var skillbar = new SkillBar();
 
 
 
@@ -42,8 +42,8 @@ function preload() {
   // game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
   // game.load.image('background','assets/misc/starfield.jpg');
   game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
-
-
+  game.load.image('cadran', 'img/cadran.png');
+  game.load.image('aiguille', 'img/aiguille.png');
 
   gui.createScore();
 //
@@ -84,7 +84,7 @@ function create() {
   // grid.tracks.add('L');
   // grid.tracks.add('M');
 
-
+  skillbar.create();
 }
 
 
@@ -97,6 +97,7 @@ function update() {
 
   grid.update();
   gui.update();
+  skillbar.update();
 }
 
 function render() {

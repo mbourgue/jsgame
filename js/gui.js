@@ -3,7 +3,7 @@ function Gui() {
   this.text;
 
   this.createScore = function() {
-    this.text = game.add.text(game.world.centerX + game.world.centerX / 2, game.world.centerY, player.score);
+    this.text = game.add.text(625, game.world.centerY + 100, player.score);
     this.text.anchor.setTo(0.5);
     this.text.font = 'Quicksand';
     this.text.align = 'center';
@@ -18,8 +18,6 @@ function Gui() {
   }
 
   this.update = function() {
-
-
     this.text.setText(player.score);
   }
 
