@@ -178,10 +178,14 @@ function Notes(track) {
 function Note(track) {
 
   this.circle = new Phaser.Circle(track.x + track.line.width/2 , -track.line.height/2, 30);
-  game.physics.enable(this.circle, Phaser.Physics.ARCADE);
+//  game.physics.enable(this.circle, Phaser.Physics.ARCADE);
 
   this.update = function() {
-    this.circle.y += 4;
+
+    //console.debug(4 * game.time.elapsed);
+    this.circle.y += 0.3 * game.time.elapsed;
+
+
   }
   this.render = function() {
     game.debug.geom(this.circle, track.color); // Render Key

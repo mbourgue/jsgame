@@ -21,13 +21,19 @@ function loadJSON() {
 function Level(grid) {
 
   this.datas = {
-    bpm: 120
-  /*  getBPMinMS: function() {
-      return 120;
-    }*/
+    bpm: 0
+
   };
 
+
+  
+
+  // TODO: suppr
   this.self = this;
+
+  this.getBPMinMS = function() {
+    return (60000 / this.datas.bpm );
+  }
 
   this.time_cursor = 0;
   /*this.timer_tempo = new Phaser.Timer(game, false);

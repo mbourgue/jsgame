@@ -1,5 +1,5 @@
 // GAME OBJECT
-var game = new Phaser.Game(window.pageX, window.pageY, Phaser.AUTO, 'phaser-example', {
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', {
   preload: preload,
   create: create,
   update: update,
@@ -23,6 +23,7 @@ WebFontConfig = {
 
 function preload() {
 
+  game.forceSingleUpdate = true;
   game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
   grid = new Grid;
@@ -42,7 +43,7 @@ function create() {
 
 
   // timer provisoire
-  game.time.events.loop(grid.level.datas.bpm, grid.level.step, grid.level);
+  game.time.events.loop(grid.level.getBPMinMS(), grid.level.step, grid.level);
 
 }
 
