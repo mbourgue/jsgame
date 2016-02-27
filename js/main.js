@@ -7,6 +7,9 @@ var game = new Phaser.Game(window.pageX, window.pageY, Phaser.AUTO, 'phaser-exam
 });
 
 
+var grid;
+var gui;
+var player;
 
 //  The Google WebFont Loader
 WebFontConfig = {
@@ -17,17 +20,20 @@ WebFontConfig = {
 
 };
 
-var grid = new Grid();
-var gui = new Gui();
-// var guiScore = new GuiScore();
 
 function preload() {
 
   game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+
+  grid = new Grid;
+  player = new Player;
+  gui = new Gui;
+
+
   gui.createScore();
 }
 
-var player = new Player();
+
 
 
 function create() {
@@ -36,7 +42,7 @@ function create() {
 
 
   // timer provisoire
-  game.time.events.loop(500, grid.level.step, grid.level);
+  game.time.events.loop(grid.level.datas.bpm, grid.level.step, grid.level);
 
 }
 

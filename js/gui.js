@@ -1,9 +1,8 @@
 function Gui() {
 
-  this.text;
+  this.text =  game.add.text(game.world.centerX + game.world.centerX / 2, game.world.centerY, player.score);
 
   this.createScore = function() {
-    this.text = game.add.text(game.world.centerX + game.world.centerX / 2, game.world.centerY, player.score);
     this.text.anchor.setTo(0.5);
     this.text.font = 'Quicksand';
     this.text.align = 'center';

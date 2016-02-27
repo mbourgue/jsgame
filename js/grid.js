@@ -33,6 +33,9 @@ function Player() {
 
 
 
+
+
+
 // Grid
 function Grid() {
 
@@ -42,19 +45,16 @@ function Grid() {
   this.inPause = false;
 
 
+  this.level.load(0); // Load & Interpret JSON File
 
-  this.init = function() {
+  this.tracks.add('W');
+  this.tracks.add('X');
+  this.tracks.add('C');
+  this.tracks.add('V');
+  this.tracks.add('B');
+  this.tracks.add('N');
 
-    this.level.load(0); // Load & Interpret JSON File
 
-    this.tracks.add('W');
-    this.tracks.add('X');
-    this.tracks.add('C');
-    this.tracks.add('V');
-    this.tracks.add('B');
-    this.tracks.add('N');
-
-  }
 
 
   this.update = function () { // Update all tracks
@@ -92,8 +92,6 @@ function Tracks() {
       console.debug('invalid length of notes array'); return;
     }
 
-
-console.log(array[i]);
     for (var i = 0; i < this.tracks.length; i++) {
 
       if(array[i] == 1) {

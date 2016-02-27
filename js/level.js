@@ -20,7 +20,12 @@ function loadJSON() {
 
 function Level(grid) {
 
-  this.datas = {};
+  this.datas = {
+    bpm: 120
+  /*  getBPMinMS: function() {
+      return 120;
+    }*/
+  };
 
   this.self = this;
 
@@ -34,8 +39,8 @@ function Level(grid) {
     this.datas = loadJSON();
 
 
-    self.datas = this.datas;
-   console.debug(self.datas);
+    //self.datas = this.datas;
+   console.debug(this.datas);
   }
 
 
