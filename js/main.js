@@ -10,6 +10,7 @@ var game = new Phaser.Game(window.pageX, window.pageY, Phaser.AUTO, 'phaser-exam
 var grid;
 var gui;
 var player;
+var skillbar;
 
 //  The Google WebFont Loader
 WebFontConfig = {
@@ -20,6 +21,7 @@ WebFontConfig = {
 
 };
 
+// var guiScore = new GuiScore();
 
 function preload() {
 
@@ -28,7 +30,10 @@ function preload() {
   grid = new Grid;
   player = new Player;
   gui = new Gui;
+  skillbar = new SkillBar();
 
+  game.load.image('cadran', 'img/cadran.png');
+  game.load.image('aiguille', 'img/aiguille.png');
 
   gui.createScore();
 }
@@ -40,10 +45,10 @@ function create() {
 
   game.stage.backgroundColor = '#111';
 
-
   // timer provisoire
   game.time.events.loop(grid.level.datas.bpm, grid.level.step, grid.level);
 
+  skillbar.create();
 }
 
 
@@ -53,6 +58,7 @@ function update() {
 
   grid.update();
   gui.update();
+  skillbar.update();
 }
 
 function render() {

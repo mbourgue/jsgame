@@ -40,7 +40,7 @@ function Player() {
 function Grid() {
 
   this.level = new Level(this);
-  this.tracks = new Tracks;
+  this.tracks = new Tracks();
 
   this.inPause = false;
 
@@ -190,8 +190,6 @@ function Note(track) {
 
 // TrackKey is the graphical representation of your keyboard button (the circles at the bottom)
 function TrackKey(track, value) {
-
-
   this.circle = new Phaser.Circle(track.x + track.line.width/2 , 500, 50);
   this.text = new Phaser.Text(game, track.x, 500, value);
   game.add.text(this.text);
@@ -223,11 +221,12 @@ function TrackKey(track, value) {
             player.score += 50;
             // console.log(player.score);
             track.notes.notes.splice(0,1);
+            skillbar.input.success();
           }else{
             if(player.score - 50 >= 0) {
               player.score -= 100;
             }
-
+            skillbar.input.fail();
           }
         }
 
