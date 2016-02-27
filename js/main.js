@@ -24,7 +24,7 @@ WebFontConfig = {
 // var guiScore = new GuiScore();
 
 function preload() {
-
+  game.add.plugin(Phaser.Plugin.Debug);
   game.forceSingleUpdate = true;
   game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
