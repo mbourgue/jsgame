@@ -1,5 +1,7 @@
 //Skill bar
 function SkillBar() {
+  this.fail_pts = 10;
+  this.success_pts = 5;
   this.cadran;
   this.aiguille;
   this.angle = -45;
@@ -22,14 +24,20 @@ function SkillBar() {
 
   this.input = {
     fail: function() {
-      if (skillbar.angle >= -89) {
-        skillbar.angle -= 1;
+      if (skillbar.angle > -90) {
+        if(skillbar.angle > -90 + skillbar.fail_pts)
+          skillbar.angle -= skillbar.fail_pts;
+        else
+          skillbar.angle = -90;
         skillbar.color.update();
       }
     },
     success: function() {
-      if (skillbar.angle <= 85) {
-        skillbar.angle += 5;
+      if (skillbar.angle < 85) {
+        if(skillbar.angle < 85 - skillbar.success_pts)
+          skillbar.angle += skillbar.success_pts;
+        else
+          skillbar.angle = 90;
         skillbar.color.update();
       }
     }
